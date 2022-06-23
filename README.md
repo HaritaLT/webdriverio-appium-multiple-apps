@@ -1,10 +1,11 @@
-# How to change IP geographic location in Real Devices on [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-nodejs-webdriver-geolocation) using the Appium & NodeJS Webdriver.io framework
+# How to install multiple apps in Real Devices on [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-nodejs-webdriver-multipleApps) using the Appium & NodeJS Webdriver.io Framework
 
-While performing app automation testing with appium on LambdaTest Grid, you may face a scenario where you would like to simulate location of a specific country. You can easily do that by using the lambdatest capability "GeoLocation" and refer the 2-letter country code in the automation script. You can refer to sample test repo [here](https://github.com/LambdaTest/LT-appium-nodejs-webdriverio).
+While performing app automation testing with appium on LambdaTest Grid, you might face a scenario where the APP1 that you are testing needs to interact with a few other applications APP2, APP3. In this scenario, LambdaTest offers an easy way out where you can just [upload your apps](https://www.lambdatest.com/support/docs/appium-java/#upload-your-application) & add them to the multiple apps array.
+It becomes extremely convenient now where you can just add those URLs & run your tests with ease. 
 
 # Steps:
 
-The following is an example on how to set geoLocation in the capabilities.
+You can add the app URLs fetched by [uploading your apps](https://www.lambdatest.com/support/docs/appium-java/#upload-your-application) in the ```otherApps``` capability.
 
 Below is the ```android-single.conf.js``` example shown:
 
@@ -12,9 +13,11 @@ Below is the ```android-single.conf.js``` example shown:
 exports.config = {
   user: process.env.LT_USERNAME || "YOUR_USERNAME",
   key: process.env.LT_ACCESS_KEY || "YOUR_ACCESS_KEY",
+
   updateJob: false,
   specs: ["./../specs/android-test.js"],
   exclude: [],
+
   capabilities: [
     {
       build: "NodeJS WebDriverIO Android",
@@ -24,11 +27,13 @@ exports.config = {
       deviceName: "Galaxy S9",
       platformVersion: "10",
       app: "YOUR_APP_URL", //Set your APP URL
-      
-      //ADD GEOLOCATION BASED ON COUNTRY CODE
-      geoLocation: "fr"  
+
+      // ADD THE APP URL OF OTHER APPS THAT YOU'D LIKE TO INSTALL ON THE SAME DEVICE
+      otherApps: "['lt:// ', 'lt:// ']",   //ENTER THE OTHER APP URLs HERE IN AN ARRAY FORMAT
+
     },
   ],
+
   logLevel: "info",
   coloredLogs: true,
   screenshotPath: "./errorShots/",
@@ -39,6 +44,7 @@ exports.config = {
   path: "/wd/hub",
   hostname: "mobile-hub.lambdatest.com",
   port: 80,
+
   framework: "mocha",
   mochaOpts: {
     ui: "bdd",
@@ -53,11 +59,21 @@ exports.config = {
 npm run single
 ```
 
+</TabItem>
+
+<TabItem value="android" label="Android" default>
+
+If you are using an **android** app, the cURL command will generate an app URL for the corresponding Android app and install the same for running the tests. You can either use our sample :link: [Android app](https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_android.apk) or upload your own app as discussed earlier.
+
 Execute the following command to run your test on LambdaTest platform:
 
 ```bash
 node ios.js
 ```
+
+</TabItem>
+
+</Tabs>
 
 Your test results would be displayed on the test console (or command-line interface if you are using terminal/cmd) and on the [LambdaTest App Automation Dashboard](https://appautomation.lambdatest.com/build).
 
@@ -108,4 +124,4 @@ To stay updated with the latest features and product add-ons, visit [Changelog](
 ## We are here to help you :headphones:
 
 * Got a query? we are available 24x7 to help. [Contact Us](support@lambdatest.com)
-* For more info, visit - [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign==LT-appium-nodejs-webdriver-geolocation)
+* For more info, visit - [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign==LT-appium-nodejs-webdriver-multipleApps)
